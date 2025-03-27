@@ -21,6 +21,7 @@ export default function LoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify(data),
       })
 
@@ -29,11 +30,6 @@ export default function LoginPage() {
         throw new Error(errorData.message || 'Identifiants invalides')
       }
 
-      const result = await response.json()
-      
-      // Stocker le token dans le localStorage
-      localStorage.setItem('token', result.token)
-      
       // Rediriger vers le tableau de bord
       router.push('/admin')
     } catch (err) {
